@@ -1,4 +1,5 @@
-# Code for StyleFlow
+# StyleFlow For Content Fixed Image to Image Translation
+This is the official code for our paper [StyleFlow](https://arxiv.org/abs/2207.01909).
 ## a. Requirements:
 * Python 3.6
 * Numpy 1.17.3
@@ -38,3 +39,16 @@ rootA: /path/src/train.txt
 rootB: /path/target/train.txt
 ~~~
 * run scripts **train_gta.sh**
+
+## Citation
+
+If you find this repo useful for your research, please cite
+~~~ 
+@article{fan2022styleflow,
+  title={StyleFlow For Content-Fixed Image to Image Translation},
+  author={Fan, Weichen and Chen, Jinghuan and Ma, Jiabin and Hou, Jun and Yi, Shuai},
+  journal={arXiv e-prints},
+  pages={arXiv--2207},
+  year={2022}
+}
+~~~

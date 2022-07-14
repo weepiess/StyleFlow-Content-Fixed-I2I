@@ -2,8 +2,6 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 
-from math import log, pi, exp
-
 from model.layers import ActNorm,InvConv2dLU,InvConv2d,ZeroConv2d,AdaIN,AdaIN_SET
 from model.layers.activation_norm import SAN
 
@@ -32,9 +30,7 @@ class AffineCoupling(nn.Module):
 
         if self.affine:
             log_s, t = self.net(in_a).chunk(2, 1)
-            # s = torch.exp(log_s)
             s = F.sigmoid(log_s + 2)
-            # out_a = s * in_a + t
             out_b = (in_b + t) * s
 
         else:
@@ -89,14 +85,6 @@ class Flow(nn.Module):
         return input
 
 
-def gaussian_log_p(x, mean, log_sd):
-    return -0.5 * log(2 * pi) - log_sd - 0.5 * (x - mean) ** 2 / torch.exp(2 * log_sd)
-
-
-def gaussian_sample(eps, mean, log_sd):
-    return mean + torch.exp(log_sd) * eps
-
-
 class Block(nn.Module):
     def __init__(self, in_channel, n_flow, affine=True, conv_lu=True):
         super(Block,self).__init__()
@@ -149,49 +137,24 @@ class Glow(nn.Module):
             
         self.blocks.append(Block(n_channel, n_flow, affine=affine))
         
-        #self.adain = AdaIN()
-        #self.adain_set = AdaIN_SET()
-       
         
     def forward(self, input, forward=True, style=None):
-        #if set:
         if forward:
             return self._forward_set(input)
         else:
             return self._reverse_set(input, style=style)
-        # else:
-        #     if forward:
-        #         return self._forward(input, style=style)
-        #     else:
-        #         return self._reverse(input, style=style)
 
     def _forward_set(self, input):
         z = input
-        #output = []
         for block in self.blocks:
             z = block(z)
-            #output.append(z)
         return z
 
     def _reverse_set(self, z, style):
         out = z
-        #out = self.adain_set(out, mean, std)
         for i, block in enumerate(self.blocks[::-1]):
             out = block.reverse(out,style)
         return out
 
-    # def _forward(self, input, style=None):
-    #     z = input
-    #     for block in self.blocks:
-    #         z = block(z)
-    #     if style is not None:
-    #         z = self.adain(z, style)
-    #     return z
 
-    # def _reverse(self, z, style=None):
-    #     out = z
-    #     if style is not None:
-    #         out = self.adain(out, style)
-    #     for i, block in enumerate(self.blocks[::-1]):
-    #         out = block.reverse(out)
-    #     return out
+

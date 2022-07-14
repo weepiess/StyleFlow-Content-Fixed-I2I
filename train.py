@@ -4,7 +4,7 @@ import os
 import torch
 from torch.utils.data import DataLoader
 
-from model.trainers.DESD import Trainer,set_random_seed#,Trainer_PCA
+from model.trainers.Trainer_StyleFlow import Trainer,set_random_seed#,Trainer_PCA
 from model.utils.dataset import get_data_loader_folder_pair
 from model.utils.sampler import DistributedGivenIterationSampler
 from model.utils.utils import get_config
