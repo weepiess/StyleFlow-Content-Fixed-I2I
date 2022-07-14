@@ -1,0 +1,69 @@
+job_name: gta
+
+output: ./output/
+
+get_direct: False
+
+used_domain: gta
+
+rootA: /path/to/train_src.txt
+
+rootB: /path/to/train_target.txt
+
+infotxt: ///
+
+read_from_file: True
+
+train_vr: False
+
+pathA: None
+
+n_flow: 15
+
+n_block: 2
+
+no_lu: False
+
+affine: False
+
+domain_code: 0
+
+vgg: ../vgg_model/vgg_normalised.pth
+
+lr: 0.0001
+
+lr_decay: 0.00005
+
+max_iter: 187900
+
+lr_steps: [40000,80000,120000]
+
+lr_mults: 0.5
+
+last_iter: -1
+
+total_epoch: 10
+
+batch_size: 1
+
+bn_group: 4
+
+bn_sync_stats: True
+
+workers: 4
+
+mse_weight: 0
+
+style_weight: 1
+
+p_weight: 0.00
+
+content_weight: 0.1
+
+histo_weight: 0
+
+keep_percent: 1
+
+resume: False
+
+task_name: gta
