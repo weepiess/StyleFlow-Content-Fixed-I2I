@@ -1,4 +1,4 @@
-# StyleFlow For Content Fixed Image to Image Translation
+# StyleFlow For Content-Fixed Image to Image Translation
 This is the official code for our paper [StyleFlow](https://arxiv.org/abs/2207.01909).
 
 ![image](./images/img1.png)
