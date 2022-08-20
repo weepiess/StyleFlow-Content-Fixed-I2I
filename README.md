@@ -44,6 +44,33 @@ rootB: /path/target/train.txt
 ~~~
 * run scripts **train_gta.sh**
 
+## Test
+### a. COCO2WikiArt
+![image](./images/COCO2Wiki.png)
+1. Download the [pretrained model](https://drive.google.com/file/d/1FWX9Ovu8Z8nmz63b3oXfu1poUA-N2HjY/view?usp=sharing)
+2. Replace the **--model path** with the **ckpt path** in test_wikiart.sh
+~~~
+nohup \
+    "python3.6 ../test.py --config=configs/wikiart.yaml --model_path /pretrained model path"&
+~~~
+3. Run the script:
+~~~
+cd scripts/
+bash test_wikiart.sh
+~~~
+
+### b. GTA2Cityscapes & KITTI
+![image](./images/GTA2City.png)
+Coming soon:)
+
+### c. Summer2Winter
+![image](./images/Summer2Winter.png)
+Coming soon:)
+
+### d. Sim2Real
+![image](./images/Sim2Real.png)
+Coming soon:)
+
 ## Citation
 
 If you find this repo useful for your research, please cite
