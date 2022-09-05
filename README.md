@@ -47,11 +47,25 @@ rootB: /path/target/train.txt
 ## Test
 ### a. COCO2WikiArt
 ![image](./images/COCO2Wiki.png)
+* Original setting - using aligned-style loss with keep_ratio equals to 0.8:
 1. Download the [pretrained model](https://drive.google.com/file/d/1FWX9Ovu8Z8nmz63b3oXfu1poUA-N2HjY/view?usp=sharing)
 2. Replace the **--model path** with the **ckpt path** in test_wikiart.sh
 ~~~
 nohup \
     "python3.6 ../test.py --config=configs/wikiart_origin.yaml --model_path /pretrained model path"&
+~~~
+3. Run the script:
+~~~
+cd scripts/
+bash test_wikiart.sh
+~~~
+
+* Optional - using tv loss with keep_ratio equals to 0.6:
+1. Download the [pretrained model](https://drive.google.com/file/d/15ei5xaNpZ9fnU9YybLK5s8o27guySsMf/view?usp=sharing)
+2. Replace the **--model path** with the **ckpt path** in test_wikiart.sh
+~~~
+nohup \
+    "python3.6 ../test.py --config=configs/wikiart_tv_0.6.yaml --model_path /pretrained model path"&
 ~~~
 3. Run the script:
 ~~~
