@@ -11,6 +11,7 @@ from model.network.glow import Glow
 from model.utils.utils import IterLRScheduler,remove_prefix
 from tensorboardX import SummaryWriter
 from model.layers.activation_norm import calc_mean_std
+from model.losses.tv_loss import TVLoss
 
 def set_random_seed(seed):
     random.seed(seed)
@@ -74,7 +75,8 @@ class Trainer():
         
         vgg = net.vgg
         vgg.load_state_dict(torch.load(cfg['vgg']))
-        self.encoder = net.Net(vgg).cuda()
+        self.encoder = net.Net(vgg,cfg['keep_ratio']).cuda()
+        self.tvloss = TVLoss().cuda()
 
         self.logger = SummaryWriter(os.path.join(self.cfg['output'],self.cfg['task_name'],'runs'))
 
@@ -95,7 +97,12 @@ class Trainer():
         stylized = self.model(content_images,domain_class=base_code.cuda())
         stylized = torch.clamp(stylized,0,1)
 
-        smooth_loss = get_gradients_loss(stylized, target_style.cuda())
+        if self.cfg['loss'] == 'tv_loss':
+            smooth_loss = self.tvloss(stylized)
+        else:
+            smooth_loss = get_gradients_loss(stylized, target_style.cuda())
+        
+
         loss_c, loss_s = self.encoder(content_images, style_images, stylized, domain_weight)
         loss_c = loss_c.mean().cuda()
         loss_s = loss_s.mean().cuda()

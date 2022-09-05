@@ -28,6 +28,8 @@ affine: False
 
 domain_code: 0
 
+loss: tv_loss
+
 vgg: ../vgg_model/vgg_normalised.pth
 
 lr: 0.00005
@@ -63,6 +65,8 @@ content_weight: 0.1
 histo_weight: 0
 
 keep_percent: 1
+
+keep_ratio: 0.6
 
 resume: False
 

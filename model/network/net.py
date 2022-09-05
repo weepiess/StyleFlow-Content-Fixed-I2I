@@ -106,14 +106,14 @@ def weighted_mse_loss(input, target, weight):
     #print('sort_loss: ',sort_loss.shape)
     return sort_loss.mean()
 
-def weighted_mse_loss_merge(input_mean, target_mean, input_std, target_std ):
+def weighted_mse_loss_merge(input_mean, target_mean, input_std, target_std, keep_ratio):
     loss_mean = ((input_mean - target_mean) ** 2)
     sort_loss_mean,idx = torch.sort(loss_mean,dim=1)
     #print('idx: ',idx.shape)
-    sort_loss_mean[:,int(sort_loss_mean.shape[1]*0.8):] = 0
+    sort_loss_mean[:,int(sort_loss_mean.shape[1]*keep_ratio):] = 0
 
     loss_std = ((input_std - target_std) ** 2)
-    loss_std[:,idx[:,int(idx.shape[1]*0.8):]] = 0
+    loss_std[:,idx[:,int(idx.shape[1]*keep_ratio):]] = 0
     #loss_std[:,sort_loss_mean.shape[1]//2:] = 0
     #print('sort_loss: ',sort_loss.shape)
     return sort_loss_mean.mean(),loss_std.mean()
@@ -132,7 +132,7 @@ def gram_matrix(input):
     return G.div(a * b * c * d)
 
 class Net(nn.Module):
-    def __init__(self, encoder):
+    def __init__(self, encoder, keep_ratio=1.0):
         super(Net, self).__init__()
         enc_layers = list(encoder.children())
         self.enc_1 = nn.Sequential(*enc_layers[:4])  # input -> relu1_1
@@ -141,6 +141,7 @@ class Net(nn.Module):
         self.enc_4 = nn.Sequential(*enc_layers[18:31])  # relu3_1 -> relu4_1 31
 
         self.mse_loss = nn.MSELoss()
+        self.keep_ratio = keep_ratio
 
         # fix the encoder
         for name in ['enc_1', 'enc_2', 'enc_3', 'enc_4']:
@@ -181,7 +182,7 @@ class Net(nn.Module):
         target_mean, target_std = calc_mean_std(target)
         # return self.mse_loss(input_mean, target_mean) + \
         #        self.mse_loss(input_std, target_std)
-        loss_mean,loss_std = weighted_mse_loss_merge(input_mean,target_mean,input_std,target_std)
+        loss_mean,loss_std = weighted_mse_loss_merge(input_mean,target_mean,input_std,target_std,self.keep_ratio)
         return loss_mean+loss_std
 
     def calc_style_loss_gram(self, input, target):
