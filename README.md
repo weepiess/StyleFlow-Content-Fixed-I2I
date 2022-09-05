@@ -71,6 +71,12 @@ Coming soon:)
 ![image](./images/Sim2Real.png)
 Coming soon:)
 
+## Change Log
+* Jul 14, 2022: Initial release
+* Aug 20, 2022: Add inference code & pretrained weigths released
+* Sep 05, 2022: Modify augmentation
+
+
 ## Citation
 
 If you find this repo useful for your research, please cite
