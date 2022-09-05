@@ -51,7 +51,7 @@ rootB: /path/target/train.txt
 2. Replace the **--model path** with the **ckpt path** in test_wikiart.sh
 ~~~
 nohup \
-    "python3.6 ../test.py --config=configs/wikiart.yaml --model_path /pretrained model path"&
+    "python3.6 ../test.py --config=configs/wikiart_origin.yaml --model_path /pretrained model path"&
 ~~~
 3. Run the script:
 ~~~
@@ -75,7 +75,9 @@ Coming soon:)
 * Jul 14, 2022: Initial release
 * Aug 20, 2022: Add inference code & pretrained weigths released
 * Sep 05, 2022: Modify augmentation
-* Sep 05, 2022: Add tv loss & Style-aligned loss configurable(wikiart.yaml)
+* Sep 05, 2022: Add tv loss & Style-aligned loss configurable
+* Sep 05, 2022: new config(wikiart_tv_0.6.yaml) using tv_loss with keep_ratio equals to 0.6
+* Sep 05, 2022: original config(wikiart_origin.yaml) using structure_aware_smooth loss with keep_ratio equals to 0.8
 
 ## Citation
 
