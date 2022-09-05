@@ -75,7 +75,7 @@ Coming soon:)
 * Jul 14, 2022: Initial release
 * Aug 20, 2022: Add inference code & pretrained weigths released
 * Sep 05, 2022: Modify augmentation
-
+* Sep 05, 2022: Add tv loss & Style-aligned loss configurable(wikiart.yaml)
 
 ## Citation
 
