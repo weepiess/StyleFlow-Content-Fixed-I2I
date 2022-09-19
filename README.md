@@ -59,8 +59,8 @@ nohup \
 cd scripts/
 bash test_wikiart.sh
 ~~~
-
-* Optional - using tv loss with keep_ratio equals to 0.6:
+---
+* **[Better Visual Performance]{Recommended}** Optional - using tv loss with keep_ratio equals to 0.6:
 1. Download the [pretrained model](https://drive.google.com/file/d/1f-XtXVVVana4PdW5go_NAYTqzZ1_ZACQ/view?usp=sharing)
 2. Replace the **--model path** with the **ckpt path** in test_wikiart.sh
 ~~~
