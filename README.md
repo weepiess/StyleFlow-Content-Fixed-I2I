@@ -75,7 +75,14 @@ bash test_wikiart.sh
 
 ### b. GTA2Cityscapes & KITTI
 ![image](./images/GTA2City.png)
-Coming soon:)
+* **[GTA ->Cityscapes only with tv loss trained in 300x400]**
+    * [GTA_tv_loss_k_0.5](https://drive.google.com/file/d/1MARCarZ4c9YsgizMjge24pBEzD4AO5fc/view?usp=sharing): keep_ratio = 0.5
+    * [GTA_tv_loss_k_0.6](https://drive.google.com/file/d/1B3ymaOaloFnQLTVZ-qFPPb1RPbsRwrIg/view?usp=sharing): keep_ratio = 0.6
+    * [GTA_tv_loss_k_0.7](https://drive.google.com/file/d/1sr_L-JqWPvXN1bBFP2LaUGC5PlTllMwY/view?usp=sharing): keep_ratio = 0.7
+    * [GTA_tv_loss_k_0.8](https://drive.google.com/file/d/1BPhetsoC6rV_eXIvdTe02pYkFPRraei8/view?usp=sharing): keep_ratio = 0.8
+    * [GTA_tv_loss_k_0.9](https://drive.google.com/file/d/1UpavcWjWJLCuhIwS6RzmC2HO3UVOFLGe/view?usp=sharing): keep_ratio = 0.9
+    
+More settings comming soon.
 
 ### c. Summer2Winter
 ![image](./images/Summer2Winter.png)
@@ -92,6 +99,7 @@ Coming soon:)
 * Sep 05, 2022: Add tv loss & Style-aligned loss configurable
 * Sep 05, 2022: new config(wikiart_tv_0.6.yaml) using tv_loss with keep_ratio equals to 0.6
 * Sep 05, 2022: original config(wikiart_origin.yaml) using structure_aware_smooth loss with keep_ratio equals to 0.8
+* Dec 03, 2022: add pretrained model (GTA ->Cityscapes only with tv loss trained in 300x400)
 
 ## Citation
 
