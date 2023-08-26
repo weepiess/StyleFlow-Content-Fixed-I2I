@@ -1,4 +1,9 @@
 # StyleFlow For Content-Fixed Image to Image Translation
+:boom::boom: **Please check our updated version [Hierarchy Flow](https://github.com/WeichenFan/HierarchyFlow)**
+- We solve the checkerboard artifacts existing in the current version and other Flow-based methods;
+- The model params are much smaller;
+
+
 This is the official code for our paper [StyleFlow](https://arxiv.org/abs/2207.01909).
 
 ![image](./images/img1.png)
@@ -104,12 +109,18 @@ Coming soon:)
 ## Citation
 
 If you find this repo useful for your research, please cite
-~~~ 
+~~~bibtex
 @article{fan2022styleflow,
   title={StyleFlow For Content-Fixed Image to Image Translation},
   author={Fan, Weichen and Chen, Jinghuan and Ma, Jiabin and Hou, Jun and Yi, Shuai},
   journal={arXiv e-prints},
   pages={arXiv--2207},
   year={2022}
+}
+@article{fan2023hierarchy,
+  title={Hierarchy Flow For High-Fidelity Image-to-Image Translation},
+  author={Fan, Weichen and Chen, Jinghuan and Liu, Ziwei},
+  journal={arXiv preprint arXiv:2308.06909},
+  year={2023}
 }
 ~~~
